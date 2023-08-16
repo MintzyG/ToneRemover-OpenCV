@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include<cmath>
 #include <vector>
+#include <ctime>
 using namespace cv;
 
 bool exists (std::vector<Vec3b> parameters, Vec3b color) {
@@ -39,7 +40,8 @@ Vec3b min(Mat& img, std::vector<Vec3b> parameters, int y, int x) {
 }
 
 int main(int argc, char** argv) {
-    cv::Mat img = cv::imread("C:/Users/sophia/Downloads/aaa.jpg");
+    cv::Mat img = cv::imread("C:/Users/sophia/Downloads/052cb3d36f96044f517eebb038346b28.jpg");
+    std::srand(std::time(0));
 
     int x = img.cols, y = img.rows;
     int amount = 0;
@@ -72,6 +74,7 @@ int main(int argc, char** argv) {
     cv::moveWindow("First OpenCV Application", 0, 45);
     cv::waitKey(0);
     cv::destroyAllWindows();
+    // cv::imwrite("PATH" + to_string(i) + "FORMAT", img);
 
     return 0;
 }
