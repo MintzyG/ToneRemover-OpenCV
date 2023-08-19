@@ -11,7 +11,7 @@
 
 ## Disclaimer
 
-Right now the program gets the amount of colors you asked for and gets that amount of colors randomly from the input image, these chosen colors will make up the output image so you may have to run the program multiple times to get the output you desire.
+  Right now the program gets the amount of colors you asked for and gets that amount of colors randomly from the input image, these chosen colors will make up the output image so you may have to run the program multiple times to get the output you desire.
 
 ## Plan to add
  - Hability to "Open with" any image file with the program and it auto fills the path
