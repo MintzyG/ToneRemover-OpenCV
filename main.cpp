@@ -14,7 +14,6 @@ bool exists (std::vector<Vec3b> parameters, Vec3b color) {
             return true;
         else if (parameters.empty())
             return false;
-
         return false;
     }
     return false;
@@ -39,10 +38,10 @@ Vec3b magnitude(Mat& img, std::vector<Vec3b> parameters, int imgY, int imgX) {
 }
 
 int main(int argc, char** argv) {
-    cv::Mat img = cv::imread("C:/Users/sophia/Downloads/Amph_RedEyedTreeFrog.jpg");
-    std::srand((int)std::time(0));
-    int x = img.cols, y = img.rows, amount = 0;
+    cv::Mat img = cv::imread("PATH_TO_FILE");
     std::vector<Vec3b> parameters;
+    int x = img.cols, y = img.rows, amount = 0;
+    std::srand((int)std::time(0));
     std::cout << "How many colors: ";
     std::cin >> amount;
 
@@ -54,8 +53,7 @@ int main(int argc, char** argv) {
 
     for (int y = 0; y < img.rows; y++) {
         for (int x = 0; x < img.cols; x++) {
-            Vec3b color = magnitude(img, parameters, y, x);
-            img.at<Vec3b>(y, x) = color;
+            img.at<Vec3b>(y, x) = magnitude(img, parameters, y, x);
         }
     }
  
@@ -64,6 +62,6 @@ int main(int argc, char** argv) {
     cv::moveWindow("First OpenCV Application", 0, 45);
     cv::waitKey(0);
     cv::destroyAllWindows();
-    // cv::imwrite("C:/Users/sophia/Desktop/test" + std::to_string(1) + "FORMAT", img);
+    cv::imwrite("PATH/FILENAME.EXTENSION", img);
     return 0;
 }
