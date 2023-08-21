@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <vector>
 #include <ctime>
+#include <filesystem>
 using namespace cv;
 
 bool exists (std::vector<Vec3b> parameters, Vec3b color) {
@@ -18,6 +19,7 @@ bool exists (std::vector<Vec3b> parameters, Vec3b color) {
     }
     return false;
 }
+
 
 Vec3b magnitude(Mat& img, std::vector<Vec3b> parameters, int imgY, int imgX) {
     Vec3b color = img.at<Vec3b>(imgY, imgX);
@@ -37,31 +39,44 @@ Vec3b magnitude(Mat& img, std::vector<Vec3b> parameters, int imgY, int imgX) {
     return parameters[pos];
 }
 
-int main(int argc, char** argv) {
-    cv::Mat img = cv::imread("PATH_TO_FILE");
-    std::vector<Vec3b> parameters;
-    int x = img.cols, y = img.rows, amount = 0;
-    std::srand((int)std::time(0));
-    std::cout << "How many colors: ";
-    std::cin >> amount;
-
-    while (parameters.size() < amount) {
-        Vec3b color = img.at<Vec3b>(std::rand() % y, std::rand() % x);
-        if (parameters.empty() || !exists(parameters, color)) 
-            parameters.push_back(color);
-    }
-
-    for (int y = 0; y < img.rows; y++) {
-        for (int x = 0; x < img.cols; x++) {
-            img.at<Vec3b>(y, x) = magnitude(img, parameters, y, x);
+int main(int argc, char *argv[]) {
+    for (int i = 0; i < sizeof(argv[1]); i++) {
+        if (argv[1][i] == (0x5c)) {
+            argv[1][i] = '/';
         }
     }
+
+   if (argc > 0) {
+        cv::Mat img = cv::imread(argv[1]);
+        std::vector<Vec3b> parameters;
+        int x = img.cols, y = img.rows, amount = 0;
+        std::srand((int)std::time(0));
+        std::cout << "How many colors: ";
+        std::cin >> amount;
+   
+        while (parameters.size() < amount) {
+            Vec3b color = img.at<Vec3b>(std::rand() % y, std::rand() % x);
+            if (parameters.empty() || !exists(parameters, color)) 
+                parameters.push_back(color);
+        }
+
+        for (int y = 0; y < img.rows; y++) {
+            for (int x = 0; x < img.cols; x++) {
+                img.at<Vec3b>(y, x) = magnitude(img, parameters, y, x);
+            }
+        }
  
-    namedWindow("First OpenCV Application", WINDOW_AUTOSIZE);
-    cv::imshow("First OpenCV Application", img);
-    cv::moveWindow("First OpenCV Application", 0, 45);
-    cv::waitKey(0);
-    cv::destroyAllWindows();
-    cv::imwrite("PATH/FILENAME.EXTENSION", img);
-    return 0;
+        std::filesystem::path path = std::filesystem::current_path();
+        std::string output = path.string();
+        output += "/ToneChangerOutput.png";
+
+        namedWindow("First OpenCV Application", WINDOW_AUTOSIZE);
+        cv::imshow("First OpenCV Application", img);
+        cv::moveWindow("First OpenCV Application", 0, 45);
+        cv::waitKey(0);
+        cv::destroyAllWindows();
+        cv::imwrite(output, img);
+
+        return 0;
+    }
 }
