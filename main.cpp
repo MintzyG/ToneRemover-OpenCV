@@ -20,7 +20,6 @@ bool exists (std::vector<Vec3b> parameters, Vec3b color) {
     return false;
 }
 
-
 Vec3b magnitude(Mat& img, std::vector<Vec3b> parameters, int imgY, int imgX) {
     Vec3b color = img.at<Vec3b>(imgY, imgX);
     int x, y, z, magnitude = 442, lesser = 442, pos = 0;
