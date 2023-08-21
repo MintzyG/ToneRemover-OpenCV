@@ -5,9 +5,9 @@
 ![](https://github.com/MintzyG/ToneRemover-OpenCV/blob/master/InputImage.jpg)  |  ![](https://github.com/MintzyG/ToneRemover-OpenCV/blob/master/OutputImage.png)
 
 ## How to use
-  - Download the exe
-  - Drag and Drop any image file on the exe
-  - The resulting image will be saved to the folder where it originally came from
+  - Download the .exe
+  - Drag and Drop any image file on the .exe
+  - The resulting image will be saved to the folder where it originally came from as a png
 
 ## Disclaimer
 
