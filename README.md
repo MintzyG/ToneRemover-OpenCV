@@ -2,7 +2,7 @@
 
 | Input image |  Output image |
 :-------------------------:|:-------------------------:
-![](https://github.com/MintzyG/ToneRemover-OpenCV/blob/master/InputImage.jpg)  |  ![](https://github.com/MintzyG/ToneRemover-OpenCV/blob/master/OutputImage.png)
+![](https://github.com/MintzyG/ToneRemover-OpenCV/blob/master/InputImage.jpg)  |  ![](https://github.com/MintzyG/ToneRemover-OpenCV/blob/master/ToneChangerOutput.png)
 
 ## How to use
   - Download the .exe
