@@ -1,6 +1,6 @@
-#include <opencv2/core.hpp>
-#include <opencv2/imgcodecs.hpp>
-#include <opencv2/highgui.hpp>
+#include "opencv2/core.hpp"
+#include "opencv2/imgcodecs.hpp"
+#include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
 #include <iostream>
 #include <cstdlib>
@@ -46,21 +46,19 @@ Vec3b magnitude(Mat& img, std::vector<Vec3b> parameters, int imgY, int imgX, std
     return parameters[pos];
 }
 
-int contador = 0;
-
-bool colorCounter(Mat img, std::vector<Vec3b>& parameters, std::vector<std::vector<int>> matI) {
-    std::vector<std::vector<int>> Acumulados;
-    std::vector<Vec3b> novasCores;
+bool improveImage(Mat img, std::vector<Vec3b>& parameters, std::vector<std::vector<int>> matI) {
+    std::vector<std::vector<int>> accumulatedColors;
+    std::vector<Vec3b> newColors;
     std::vector<int>  colorCounter;
     bool Improve = false;
 
-    Acumulados.reserve(parameters.size());
+    accumulatedColors.reserve(parameters.size());
     for (int i = 0; i < parameters.size(); i++) {
         std::vector<int> vec;
         for (int i = 0; i < 3; i++) {
             vec.push_back(0);
         }
-        Acumulados.push_back(vec);
+        accumulatedColors.push_back(vec);
     }
 
     for (int i = 0; i < parameters.size(); i++) {
@@ -70,25 +68,24 @@ bool colorCounter(Mat img, std::vector<Vec3b>& parameters, std::vector<std::vect
     for (int i = 0; i < img.rows; i++) {
         for (int j = 0; j < img.cols; j++) {
             colorCounter[matI[i][j]] += 1;
-            Acumulados[matI[i][j]][0] += (int)img.at<Vec3b>(i, j)[0];
-            Acumulados[matI[i][j]][1] += (int)img.at<Vec3b>(i, j)[1];
-            Acumulados[matI[i][j]][2] += (int)img.at<Vec3b>(i, j)[2];
+            accumulatedColors[matI[i][j]][0] += (int)img.at<Vec3b>(i, j)[0];
+            accumulatedColors[matI[i][j]][1] += (int)img.at<Vec3b>(i, j)[1];
+            accumulatedColors[matI[i][j]][2] += (int)img.at<Vec3b>(i, j)[2];
         }
     }
 
-    contador += 1;
-    novasCores.reserve(parameters.size());
+    newColors.reserve(parameters.size());
     for (int i = 0; i < parameters.size(); i++) {
-        novasCores[i][0] = Acumulados[i][0] / colorCounter[i];
-        novasCores[i][1] = Acumulados[i][1] / colorCounter[i];
-        novasCores[i][2] = Acumulados[i][2] / colorCounter[i];
-        if (distance(novasCores[i], parameters[i]) > 5) {
+        newColors[i][0] = accumulatedColors[i][0] / colorCounter[i];
+        newColors[i][1] = accumulatedColors[i][1] / colorCounter[i];
+        newColors[i][2] = accumulatedColors[i][2] / colorCounter[i];
+        if (distance(newColors[i], parameters[i]) > 5) {
             Improve = true;
         }
     }
 
     for (int i = 0; i < parameters.size(); i++) {
-        parameters[i] = novasCores[i];
+        parameters[i] = newColors[i];
     }
 
     return Improve;
@@ -135,7 +132,7 @@ int main(int argc, char *argv[]) {
                 }
             }
 
-            bool Improve = colorCounter(img, parameters, matI);
+            bool Improve = improveImage(img, parameters, matI);
             if (Improve) {
                 continue;
             }
