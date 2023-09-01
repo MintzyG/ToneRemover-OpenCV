@@ -4,7 +4,7 @@
 :-------------------------:|:-------------------------:
 ![](https://github.com/MintzyG/ToneRemover-OpenCV/blob/master/InputImage.jpg)  |  ![](https://github.com/MintzyG/ToneRemover-OpenCV/blob/master/ToneChangerOutput.png)
 
-## How to use (Doesn't work yet)
+## How to use
   - Download the .exe
   - Drag and Drop any image file on the .exe
   - The resulting image will be saved to the folder where it originally came from as a png
@@ -14,7 +14,3 @@
   - It then tones down the image to those N colors using distance between points in space
   - The resulting image is compared to the original one using K-Means Clustering, if close looking enough, the program saves and exits
   - If the image is not close looking enough it keeps using K-Means Clustering until it closely resmembles the original, but now with N colors
-
-## Plan to add
-  - Packaging the program with OpenCVWorld480.lib
-
