@@ -1,6 +1,6 @@
 # OpenCV Tone Remover
 
-> Makes an image have X tones 
+> Makes an image have any amount of tones desired
 
 | Input image |  Output image |
 :-------------------------:|:-------------------------:
