@@ -5,8 +5,8 @@
 ![](https://github.com/MintzyG/ToneRemover-OpenCV/blob/master/InputImage.jpg)  |  ![](https://github.com/MintzyG/ToneRemover-OpenCV/blob/master/ToneChangerOutput.png)
 
 ## How to use
-  - Download the .exe
-  - Download and install OpenCV library
+  - Download and install [OpenCV](https://opencv.org/get-started/) library
+  - Clone this Repo and compile it
   - Drag and Drop any image file on the .exe
   - The resulting image will be saved to the folder where it originally came from as a png
 
