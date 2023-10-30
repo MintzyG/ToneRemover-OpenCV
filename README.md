@@ -19,3 +19,4 @@
 ## Downfalls of this project
   - I failed to learn how to use CMake to statically compile OpenCV libraries into the my binary, therefor the user has to download the libraries if they desire to use the application
   - The method used is far from fast or good for the effect desired, however the method was chosen by my professor so I had no say in that
+  - No pre-compiled binary was made available to the end user, making them have to link and compile the project, which is a confusing process
