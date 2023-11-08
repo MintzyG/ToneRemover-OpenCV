@@ -23,5 +23,5 @@
   - The method used is far from fast or good for the effect desired, however the method was chosen by my professor so I had no say in that
   - No pre-compiled binary was made available to the end user, making them have to link and compile the project, which is a confusing process
 
-## I intend to:
-  - I atleast intend to comeback to this project and make available a pre-compiled binary but without the library still
+## I pretend to:
+  - I atleast pretend to comeback to this project and make available a pre-compiled binary but without the library still
